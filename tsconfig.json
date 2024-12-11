@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2017",
+    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": false,
+    "jsx": "react",
+    "allowJs": true,
+    "isolatedModules": false,
+    "paths": {
+      "@components": ["client/components"],
+      "@stores": ["client/stores"],
+      "@root/*": ["*"]
+    },
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["build-plugin/*.ts", "client/**/*.ts", "server/**/*.ts", "client/**/*.tsx", "server/**/*.tsx", "client/**/*.js", "server/**/*.js", "client/**/*.jsx", "server/**/*.jsx"],
+  "exclude": ["dist**/*"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "require": ["tsconfig-paths/register"]
+  },
+  "files": ["globals.d.ts"]
+}
