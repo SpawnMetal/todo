@@ -1,13 +1,14 @@
 import React from 'react'
 import {observer} from 'mobx-react-lite'
-import {Header, Peoples} from '@components'
-import {sw} from '@stores'
+import {Todos} from '@components'
+import {store} from '@stores'
+import {Box} from '@mui/material'
+import * as style from './style'
 
 export const Home = observer(() => {
   return (
-    <>
-      <Header />
-      {sw.isRequestStatusSuccess('people') && <Peoples />}
-    </>
+    <Box sx={style.home}>
+      <Box sx={style.todo}>{store.isRequestStatusSuccess && <Todos />}</Box>
+    </Box>
   )
 })

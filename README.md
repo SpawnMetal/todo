@@ -1,6 +1,6 @@
 # Список задач todos
 
-MVP demo todos
+Desctop MVP demo todos
 
 ## Оглавление
 

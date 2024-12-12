@@ -2,7 +2,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import {EventEmitter} from 'node:stream'
 import esbuildEnvPlugin from 'esbuild-envfile-plugin'
-// import {esbuildDecorators} from '@anatine/esbuild-decorators'
 import {build, BuildOptions, BuildResult, WatchMode} from 'esbuild'
 import {HTMLPlugin} from './plugins/HTMLPlugin'
 import {BuilderOptions} from './build.option'
@@ -24,33 +23,21 @@ export default (async () => {
     bundle: true,
   }
 
-  if (projectType === 'front-end') {
-    options = {
-      ...options,
-      entryPoints: [pathFromRootDir('client', applicationName, 'components', 'main', 'main.tsx')],
-      entryNames: '[dir]/bundle.[hash]',
-      sourcemap: true,
-      metafile: true,
-      platform: 'browser',
-      plugins: [CleanPlugin, esbuildEnvPlugin, copyStaticFiles({src: pathFromRootDir('public'), dest: pathFromRootDir('dist', `${projectType}`, `${pathName}`)})],
-      loader: {
-        '.png': 'file',
-        '.svg': 'file',
-        '.jpg': 'file',
-        '.jpeg': 'file',
-        '.xlsx': 'file',
-      },
-    }
-  } else {
-    options = {
-      ...options,
-      entryPoints: [pathFromRootDir('server', 'apps', applicationName, 'main.ts')],
-      treeShaking: true,
-      external: ['@nestjs/microservices', '@nestjs/websockets', 'class-transformer/storage', 'pg-native'],
-      platform: 'node',
-      target: ['node16.13'],
-      // plugins: [esbuildDecorators({tsconfig: pathFromRootDir('tsconfig.json'), cwd: process.cwd()})],
-    }
+  options = {
+    ...options,
+    entryPoints: [pathFromRootDir('client', applicationName, 'components', 'main', 'main.tsx')],
+    entryNames: '[dir]/bundle.[hash]',
+    sourcemap: true,
+    metafile: true,
+    platform: 'browser',
+    plugins: [CleanPlugin, esbuildEnvPlugin, copyStaticFiles({src: pathFromRootDir('public'), dest: pathFromRootDir('dist', `${projectType}`, `${pathName}`)})],
+    loader: {
+      '.png': 'file',
+      '.svg': 'file',
+      '.jpg': 'file',
+      '.jpeg': 'file',
+      '.xlsx': 'file',
+    },
   }
 
   const plugins = options.plugins ? options.plugins : []
