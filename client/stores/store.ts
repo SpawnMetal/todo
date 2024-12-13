@@ -1,25 +1,16 @@
 import {makeAutoObservable} from 'mobx'
-
-type RequestStatuses = 'loading' | 'success' | 'error' | null
-
-interface Todo {
-  [key: string]: {
-    value: string
-    isDone: boolean
-  }
-}
-
-export type ToggleModes = 'all' | 'active' | 'completed'
+import {Todo} from './store.interface'
+import {RequestStatuses, ToggleModes} from './store.type'
 
 // Основное состояние приложения
 class Sw {
-  requestStatusLoading: RequestStatuses = 'loading' // Статус получения данных - загрузка
-  requestStatusSuccess: RequestStatuses = 'success' // Статус получения данных - успех
-  requestStatusError: RequestStatuses = 'error' // Статус получения данных - ошибка
-  requestStatus: RequestStatuses = null // Статус получения данных
-  todo: Todo = {} // Данные по задачам
-  itemsLeft = 0
-  toggleMode: ToggleModes = 'all'
+  private requestStatusLoading: RequestStatuses = 'loading' // Статус получения данных - загрузка
+  private requestStatusSuccess: RequestStatuses = 'success' // Статус получения данных - успех
+  private requestStatusError: RequestStatuses = 'error' // Статус получения данных - ошибка
+  private requestStatus: RequestStatuses = null // Статус получения данных
+  private todo: Todo = {} // Данные по задачам
+  private itemsLeft = 0
+  private toggleMode: ToggleModes = 'all'
 
   constructor() {
     makeAutoObservable(this)
