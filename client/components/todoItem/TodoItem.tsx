@@ -16,6 +16,7 @@ interface Props {
 export const TodoItem = observer(({isDone, value, keyTodo}: Props) => {
   const changeIsDone = () => {
     store.setTodoDone(keyTodo, !isDone)
+    store.setItemsLeft()
   }
 
   const handleOnChangeIsDone = () => changeIsDone()

@@ -9,6 +9,8 @@ interface Todo {
   }
 }
 
+export type ToggleModes = 'all' | 'active' | 'completed'
+
 // Основное состояние приложения
 class Sw {
   requestStatusLoading: RequestStatuses = 'loading' // Статус получения данных - загрузка
@@ -16,6 +18,8 @@ class Sw {
   requestStatusError: RequestStatuses = 'error' // Статус получения данных - ошибка
   requestStatus: RequestStatuses = null // Статус получения данных
   todo: Todo = {} // Данные по задачам
+  itemsLeft = 0
+  toggleMode: ToggleModes = 'all'
 
   constructor() {
     makeAutoObservable(this)
@@ -67,6 +71,27 @@ class Sw {
   editTodo(key: string, value: string) {
     this.todo[key].value = value
     this.todo = {...this.todo}
+  }
+
+  setItemsLeft() {
+    this.itemsLeft = Object.values(this.todo).filter(item => !item.isDone).length
+  }
+
+  getItemsLeft() {
+    return this.itemsLeft
+  }
+
+  clearCompleted() {
+    for (const key in this.todo) this.todo[key].isDone && delete this.todo[key]
+    this.todo = {...this.todo}
+  }
+
+  getToggleMode() {
+    return this.toggleMode
+  }
+
+  setToggleMode(mode: ToggleModes) {
+    this.toggleMode = mode
   }
 }
 

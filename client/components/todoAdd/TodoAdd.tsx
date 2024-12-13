@@ -23,6 +23,7 @@ export const TodoAdd = observer(() => {
 
   const addTodo = () => {
     store.addTodo(value)
+    store.setItemsLeft()
     setValue('')
   }
 

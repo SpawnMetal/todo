@@ -3,7 +3,7 @@ import {Theme} from '@mui/material/styles'
 import {alpha} from '@mui/material/styles'
 import {CSSProperties} from 'react'
 
-export const inputStyles: SxProps<Theme> = theme => ({
+export const inputStyles: SxProps = {
   position: 'relative',
   mb: '1px',
   boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1)',
@@ -11,14 +11,10 @@ export const inputStyles: SxProps<Theme> = theme => ({
   '&:hover': {
     backgroundColor: alpha('#fff', 0.25),
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-})
+  width: 'auto',
+  mr: 2,
+  ml: 2,
+}
 
 export const inputIconWrapper: SxProps = {
   pl: 2,
@@ -40,9 +36,6 @@ export const styledInputBase: SxProps<Theme> = theme => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
   },
 })
 
