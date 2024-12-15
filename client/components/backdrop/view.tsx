@@ -1,19 +1,13 @@
 import React from 'react'
-import {observer} from 'mobx-react-lite'
 import {Backdrop as Bdrop} from '@mui/material'
 import * as style from './style'
 import {Progress} from '@components'
+import {PropsView} from './interface'
 
-interface Props {
-  open: boolean
-}
-
-export const Backdrop = observer((props: Props) => {
-  const {open} = props
-
+export const BackdropView = ({open}: PropsView) => {
   return (
     <Bdrop open={open} sx={style.backdrop}>
       <Progress />
     </Bdrop>
   )
-})
+}

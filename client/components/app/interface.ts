@@ -1,4 +1,4 @@
-export interface AppInterface {
+export interface PropsView {
   isRequestStatusError: boolean
   isRequestStatusSuccess: boolean
   isRequestStatusLoading: boolean

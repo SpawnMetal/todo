@@ -22,9 +22,9 @@
     "allowJs": true,
     "isolatedModules": false,
     "paths": {
-      "@root/*": ["*"],
       "@components": ["client/components"],
-      "@stores": ["client/stores"]
+      "@stores": ["client/stores"],
+      "@root/*": ["*"]
     },
     "noEmit": false,
     "resolveJsonModule": true,

@@ -1,12 +1,9 @@
 import React from 'react'
-import {observer} from 'mobx-react-lite'
-import {TodoAdd} from '../todoAdd/TodoAdd'
-import {TodoList} from '../todoList/TodoList'
-import {TodoPanel} from '../todoPanel/TodoPanel'
+import {TodoAdd, TodoList, TodoPanel} from '@components'
 import {Typography} from '@mui/material'
 import * as style from './style'
 
-export const Todos = observer(() => {
+export const TodosView = () => {
   return (
     <>
       <Typography sx={style.title} variant="h1">
@@ -17,4 +14,4 @@ export const Todos = observer(() => {
       <TodoPanel />
     </>
   )
-})
+}

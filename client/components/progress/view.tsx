@@ -1,12 +1,11 @@
 import React from 'react'
-import {observer} from 'mobx-react-lite'
 import {Grid, CircularProgress} from '@mui/material'
 import * as style from './style'
 
-export const Progress = observer(() => {
+export const ProgressView = () => {
   return (
     <Grid container sx={style.progress}>
       <CircularProgress />
     </Grid>
   )
-})
+}

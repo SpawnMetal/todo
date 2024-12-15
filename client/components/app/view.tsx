@@ -1,9 +1,9 @@
 import React from 'react'
 import {Backdrop, ErrorPage, Home} from '@components'
 import {ErrorBoundary} from '@components'
-import {AppInterface} from './App.interface'
+import {PropsView} from './interface'
 
-export const AppView = ({isRequestStatusError, isRequestStatusSuccess, isRequestStatusLoading}: AppInterface) => {
+export const AppView = ({isRequestStatusError, isRequestStatusSuccess, isRequestStatusLoading}: PropsView) => {
   if (isRequestStatusError) return <ErrorPage />
 
   return (

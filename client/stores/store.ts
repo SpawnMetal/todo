@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx'
-import {Todo} from './store.interface'
-import {RequestStatuses, ToggleModes} from './store.type'
+import {Todo} from './interface'
+import {RequestStatuses, ToggleModes} from './type'
 
 // Основное состояние приложения
 class Sw {
@@ -9,8 +9,8 @@ class Sw {
   private requestStatusError: RequestStatuses = 'error' // Статус получения данных - ошибка
   private requestStatus: RequestStatuses = null // Статус получения данных
   private todo: Todo = {} // Данные по задачам
-  private itemsLeft = 0
-  private toggleMode: ToggleModes = 'all'
+  private itemsLeft = 0 // Количество задач, которые ещё не выполнены
+  private toggleMode: ToggleModes = 'all' // Режим отображения задач
 
   constructor() {
     makeAutoObservable(this)
@@ -46,12 +46,14 @@ class Sw {
     return this.requestStatus === this.requestStatusError
   }
 
+  // Добавляет задачу
   addTodo(value: string) {
     if (!value) return
 
     this.todo = {...this.todo, [Date.now()]: {value, isDone: false}}
   }
 
+  // Помечает задачу как выполненную
   setTodoDone(key: string, isDone: boolean) {
     if (!this.todo[key]) return
 
@@ -59,30 +61,41 @@ class Sw {
     this.todo = {...this.todo}
   }
 
+  // Редактирует задачу
   editTodo(key: string, value: string) {
     this.todo[key].value = value
     this.todo = {...this.todo}
   }
 
+  // Устанавливает значение оставшихся не выполненных задач
   setItemsLeft() {
     this.itemsLeft = Object.values(this.todo).filter(item => !item.isDone).length
   }
 
+  // Получает значение оставшихся не выполненных задач
   getItemsLeft() {
     return this.itemsLeft
   }
 
+  // Удаляет завершённые задачи
   clearCompleted() {
     for (const key in this.todo) this.todo[key].isDone && delete this.todo[key]
     this.todo = {...this.todo}
   }
 
+  // Получает режим отображения задач
   getToggleMode() {
     return this.toggleMode
   }
 
+  // Устанавливает режим отображения задач
   setToggleMode(mode: ToggleModes) {
     this.toggleMode = mode
+  }
+
+  // Получает задачи
+  getTodo() {
+    return this.todo
   }
 }
 

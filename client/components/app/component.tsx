@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {observer} from 'mobx-react-lite'
 import {store} from '@stores'
-import {AppView} from './App.view'
+import {AppView} from './view'
 
 export const App = observer(() => {
   useEffect(() => {

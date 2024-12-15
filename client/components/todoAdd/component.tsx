@@ -1,10 +1,7 @@
 import React from 'react'
 import {observer} from 'mobx-react-lite'
-import {Box} from '@mui/material'
-import {InputBase} from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
-import * as style from './style'
 import {store} from '@stores'
+import {TodoAddView} from './view'
 
 export const TodoAdd = observer(() => {
   const [value, setValue] = React.useState('')
@@ -27,12 +24,5 @@ export const TodoAdd = observer(() => {
     setValue('')
   }
 
-  return (
-    <Box sx={style.inputStyles}>
-      <Box sx={style.inputIconWrapper} style={value.length ? style.isNotEmptyText : null} onClick={handleOnClickAddTodo}>
-        <AddIcon />
-      </Box>
-      <InputBase sx={style.styledInputBase} value={value} placeholder="What needs to be done?" onKeyUp={handleOnKeyUpAddTodo} onChange={handleOnChangeAddTodo} />
-    </Box>
-  )
+  return <TodoAddView handleOnChangeAddTodo={handleOnChangeAddTodo} handleOnKeyUpAddTodo={handleOnKeyUpAddTodo} handleOnClickAddTodo={handleOnClickAddTodo} value={value} />
 })
