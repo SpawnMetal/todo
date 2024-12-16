@@ -1,12 +1,10 @@
 import React, {useMemo} from 'react'
 import {Box} from '@mui/material'
-import {PropsView, TodoItemMemoProps} from './interface'
-import {TodoItem} from '@components'
-
-const TodoItemMemo = React.memo(({value, isDone, keyTodo}: TodoItemMemoProps) => <TodoItem value={value} isDone={isDone} keyTodo={keyTodo} />)
+import {PropsView} from './interface'
+import {InfiniteScroll, TodoItem, TodoItemProps} from '@components'
 
 export const TodoListView = ({toggleMode, todo}: PropsView) => {
-  const Todo = useMemo(
+  const todoMemo = useMemo(
     () =>
       Object.keys(todo)
         .filter(key => {
@@ -18,9 +16,13 @@ export const TodoListView = ({toggleMode, todo}: PropsView) => {
 
           return true
         })
-        .map(key => <TodoItemMemo value={todo[key].value} isDone={todo[key].isDone} key={key} keyTodo={key} />),
+        .map(key => todo[key]),
     [todo, toggleMode],
   )
 
-  return <Box>{Todo}</Box>
+  return (
+    <Box>
+      <InfiniteScroll data={todoMemo} renderItem={(props: TodoItemProps) => <TodoItem {...props} />} />
+    </Box>
+  )
 }

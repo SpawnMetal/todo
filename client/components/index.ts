@@ -13,3 +13,5 @@ export * from './todoPanel/component'
 export * from './itemsLeft/component'
 export * from './clearCompleted/component'
 export * from './itemsToggle/component'
+
+export {Props as TodoItemProps} from './todoItem/interface'

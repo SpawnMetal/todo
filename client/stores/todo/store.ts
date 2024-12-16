@@ -1,16 +1,16 @@
 import {makeAutoObservable} from 'mobx'
-import {Todo} from './interface'
-import {RequestStatuses, ToggleModes} from './type'
+import {TodoInterface, RequestStatuses, ToggleModes} from './interface'
 
 // Основное состояние приложения
-class Sw {
+class Todo {
   private requestStatusLoading: RequestStatuses = 'loading' // Статус получения данных - загрузка
   private requestStatusSuccess: RequestStatuses = 'success' // Статус получения данных - успех
   private requestStatusError: RequestStatuses = 'error' // Статус получения данных - ошибка
   private requestStatus: RequestStatuses = null // Статус получения данных
-  private todo: Todo = {} // Данные по задачам
+  private todo: TodoInterface = {} // Данные по задачам
   private itemsLeft = 0 // Количество задач, которые ещё не выполнены
   private toggleMode: ToggleModes = 'all' // Режим отображения задач
+  private timerId: NodeJS.Timeout = null // Идентификатор debounce таймера для для сохранения данных
 
   constructor() {
     makeAutoObservable(this)
@@ -50,7 +50,8 @@ class Sw {
   addTodo(value: string) {
     if (!value) return
 
-    this.todo = {...this.todo, [Date.now()]: {value, isDone: false}}
+    const keyTodo = Date.now()
+    this.todo = {...this.todo, [keyTodo]: {value, isDone: false, keyTodo, key: keyTodo}}
   }
 
   // Помечает задачу как выполненную
@@ -97,6 +98,27 @@ class Sw {
   getTodo() {
     return this.todo
   }
+
+  // Сохраняет задачи в sessionStorage
+  private async setSessionStorage() {
+    try {
+      sessionStorage.setItem('todo', JSON.stringify(this.todo))
+    } catch (error) {}
+  }
+
+  // Получает задачи из sessionStorage
+  async getsessionStorage() {
+    try {
+      const todo = sessionStorage.getItem('todo')
+      if (todo) this.todo = JSON.parse(todo)
+    } catch (error) {}
+  }
+
+  // Обновляет задачи в sessionStorage
+  async updateSessionStorage() {
+    clearTimeout(this.timerId)
+    this.timerId = setTimeout(() => this.setSessionStorage(), 5000)
+  }
 }
 
-export const store = new Sw()
+export const todo = new Todo()

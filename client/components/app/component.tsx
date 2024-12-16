@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react'
 import {observer} from 'mobx-react-lite'
-import {store} from '@stores'
+import {todo} from '@stores'
 import {AppView} from './view'
 
 export const App = observer(() => {
   useEffect(() => {
-    // Получать из sessionStorage
-    store.setRequestStatusSuccess()
+    todo.setRequestStatusLoading()
+
+    setTimeout(() => {
+      todo.getsessionStorage().finally(() => todo.setRequestStatusSuccess())
+    }, 1000) // Иммитация загрузки
   }, [])
 
-  return <AppView isRequestStatusError={store.isRequestStatusError()} isRequestStatusSuccess={store.isRequestStatusSuccess()} isRequestStatusLoading={store.isRequestStatusLoading()} />
+  return <AppView isRequestStatusError={todo.isRequestStatusError()} isRequestStatusSuccess={todo.isRequestStatusSuccess()} isRequestStatusLoading={todo.isRequestStatusLoading()} />
 })

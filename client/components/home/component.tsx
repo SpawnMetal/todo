@@ -1,8 +1,8 @@
 import React from 'react'
 import {observer} from 'mobx-react-lite'
 import {HomeView} from './view'
-import {store} from '@stores'
+import {todo} from '@stores'
 
 export const Home = observer(() => {
-  return <HomeView isRequestStatusSuccess={store.isRequestStatusSuccess()} />
+  return <HomeView isRequestStatusSuccess={todo.isRequestStatusSuccess()} />
 })

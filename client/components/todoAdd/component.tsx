@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react-lite'
-import {store} from '@stores'
+import {todo} from '@stores'
 import {TodoAddView} from './view'
 
 export const TodoAdd = observer(() => {
@@ -19,8 +19,9 @@ export const TodoAdd = observer(() => {
   }
 
   const addTodo = () => {
-    store.addTodo(value)
-    store.setItemsLeft()
+    todo.addTodo(value)
+    todo.setItemsLeft()
+    todo.updateSessionStorage()
     setValue('')
   }
 

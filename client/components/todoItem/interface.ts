@@ -1,8 +1,6 @@
-export interface Props {
-  isDone: boolean
-  value: string
-  keyTodo: string
-}
+import {TodoItemInterface} from '@stores'
+
+export interface Props extends TodoItemInterface {}
 
 export interface PropsView {
   isDone: boolean
