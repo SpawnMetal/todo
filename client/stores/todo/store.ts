@@ -1,5 +1,6 @@
 import {makeAutoObservable} from 'mobx'
 import {TodoInterface, RequestStatuses, ToggleModes} from './interface'
+import {DEBOUNCE_UPDATE_TODO} from 'env'
 
 // Основное состояние приложения
 class Todo {
@@ -117,7 +118,7 @@ class Todo {
   // Обновляет задачи в sessionStorage
   async updateSessionStorage() {
     clearTimeout(this.timerId)
-    this.timerId = setTimeout(() => this.setSessionStorage(), 5000)
+    this.timerId = setTimeout(() => this.setSessionStorage(), +DEBOUNCE_UPDATE_TODO)
   }
 }
 
