@@ -51,22 +51,20 @@ class Todo {
   addTodo(value: string) {
     if (!value) return
 
-    const keyTodo = Date.now()
-    this.todo = {...this.todo, [keyTodo]: {value, isDone: false, keyTodo, key: keyTodo}}
+    const keyTodo = String(Date.now())
+    this.todo[keyTodo] = {value, isDone: false, keyTodo, key: keyTodo}
   }
 
   // Помечает задачу как выполненную
   setTodoDone(key: string, isDone: boolean) {
     if (!this.todo[key]) return
 
-    this.todo[key].isDone = isDone
-    this.todo = {...this.todo}
+    this.todo[key] = {...this.todo[key], isDone}
   }
 
   // Редактирует задачу
   editTodo(key: string, value: string) {
-    this.todo[key].value = value
-    this.todo = {...this.todo}
+    this.todo[key] = {...this.todo[key], value}
   }
 
   // Устанавливает значение оставшихся не выполненных задач
@@ -82,7 +80,6 @@ class Todo {
   // Удаляет завершённые задачи
   clearCompleted() {
     for (const key in this.todo) this.todo[key].isDone && delete this.todo[key]
-    this.todo = {...this.todo}
   }
 
   // Получает режим отображения задач
@@ -95,9 +92,9 @@ class Todo {
     this.toggleMode = mode
   }
 
-  // Получает задачи
-  getTodo() {
-    return this.todo
+  // Получает копию задач с целью предотвращения внесения изменений из вне
+  getTodo(): Readonly<TodoInterface> {
+    return {...this.todo}
   }
 
   // Сохраняет задачи в sessionStorage

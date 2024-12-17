@@ -8,7 +8,10 @@ export const App = observer(() => {
     todo.setRequestStatusLoading()
 
     setTimeout(() => {
-      todo.getsessionStorage().finally(() => todo.setRequestStatusSuccess())
+      todo.getsessionStorage().finally(() => {
+        todo.setRequestStatusSuccess()
+        todo.setItemsLeft()
+      })
     }, 1000) // Иммитация загрузки
   }, [])
 

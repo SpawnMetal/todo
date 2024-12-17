@@ -4,4 +4,5 @@ declare module 'env' {
   const NODE_ENV: string
   const DEBOUNCE_UPDATE_TODO: string
   const SCROLL_ITEMS_COUNT: string
+  const MODE: 'mobx' | 'rtk'
 }
