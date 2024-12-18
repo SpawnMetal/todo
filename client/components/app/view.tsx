@@ -10,7 +10,8 @@ export const AppView = ({isRequestStatusError, isRequestStatusSuccess, isRequest
     <ErrorBoundary>
       <link rel="icon" href="/favicon.ico" />
       {isRequestStatusSuccess && <Home />}
-      {<Backdrop open={isRequestStatusLoading} />}
+      {/* В MODE = mobx, изменение open = false в Backdrop не реагирует, как-то связано с lazy импортом */}
+      {isRequestStatusLoading && <Backdrop open={isRequestStatusLoading} />}
     </ErrorBoundary>
   )
 }
