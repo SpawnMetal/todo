@@ -25,6 +25,7 @@
       "@components": ["client/components"],
       "@stores": ["client/stores"],
       "@helpers": ["client/helpers"],
+      "@config": ["client/config.json"],
       "@root/*": ["*"]
     },
     "noEmit": false,

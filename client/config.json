@@ -1,0 +1,5 @@
+{
+  "mode": "mobx",
+  "debounceUpdateTodo": 5000,
+  "scrollItemsCount": 20
+}

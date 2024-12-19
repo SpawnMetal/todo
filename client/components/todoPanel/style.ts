@@ -9,7 +9,7 @@ export const panelMain: SxProps = {
   mt: '1px',
   ml: 2,
   mr: 2,
-  pl: 3,
-  pr: 3,
+  pl: 2.5,
+  pr: 2.5,
   boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1)',
 }

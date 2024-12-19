@@ -2,10 +2,10 @@ import React, {useState, useEffect, useMemo, memo} from 'react'
 import {Progress} from '@components'
 import {Box} from '@mui/material'
 import * as style from './style'
-import {SCROLL_ITEMS_COUNT} from 'env'
+import {scrollItemsCount} from '@config'
 
 export const InfiniteScroll = ({data, renderItem}) => {
-  const stepCount = +SCROLL_ITEMS_COUNT
+  const stepCount = scrollItemsCount
   const [endIndex, setEndIndex] = useState(stepCount)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)

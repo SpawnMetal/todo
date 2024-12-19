@@ -1,14 +1,14 @@
-import {MODE} from 'env'
+import {mode} from '@config'
 import {lazy} from 'react'
 
-console.info('Используется мод:', MODE)
+console.info('Используется мод:', mode)
 
 export * from './mode/component'
 export * from './errorBoundary/ErrorBoundary'
 export * from './infiniteScroll/InfiniteScroll'
 
 const componentExports = {
-  [MODE]: {},
+  [mode]: {},
   mobx: {
     App: lazy(() => import('./app/component').then(module => ({default: module.App}))),
     Home: lazy(() => import('./home/component').then(module => ({default: module.Home}))),
@@ -23,7 +23,6 @@ const componentExports = {
     ItemsLeft: lazy(() => import('./itemsLeft/component').then(module => ({default: module.ItemsLeft}))),
     ClearCompleted: lazy(() => import('./clearCompleted/component').then(module => ({default: module.ClearCompleted}))),
     ItemsToggle: lazy(() => import('./itemsToggle/component').then(module => ({default: module.ItemsToggle}))),
-    Test: lazy(() => import('./tests/component').then(module => ({default: module.Test}))),
   },
   rtk: {
     App: lazy(() => import('./app/component.rtk').then(module => ({default: module.App}))),
@@ -39,11 +38,10 @@ const componentExports = {
     ItemsLeft: lazy(() => import('./itemsLeft/component.rtk').then(module => ({default: module.ItemsLeft}))),
     ClearCompleted: lazy(() => import('./clearCompleted/component.rtk').then(module => ({default: module.ClearCompleted}))),
     ItemsToggle: lazy(() => import('./itemsToggle/component.rtk').then(module => ({default: module.ItemsToggle}))),
-    Test: lazy(() => import('./tests/component').then(module => ({default: module.Test}))),
   },
 }
 
-export const {App, Home, Progress, Backdrop, ErrorPage, Todos, TodoAdd, TodoList, TodoItem, TodoPanel, ItemsLeft, ClearCompleted, ItemsToggle, Test} = componentExports[MODE]
+export const {App, Home, Progress, Backdrop, ErrorPage, Todos, TodoAdd, TodoList, TodoItem, TodoPanel, ItemsLeft, ClearCompleted, ItemsToggle} = componentExports[mode]
 
 // Interfaces
 export {Props as TodoItemProps} from './todoItem/interface'

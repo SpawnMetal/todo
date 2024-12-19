@@ -17,13 +17,14 @@ export const inputStyles: SxProps = {
 }
 
 export const inputIconWrapper: SxProps = {
-  pl: 2,
+  pl: 1,
+  ml: 0.5,
   height: '100%',
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  opacity: 0.2,
+  opacity: 1,
   zIndex: 1,
   '&:hover': {cursor: 'pointer'},
 }
@@ -42,4 +43,8 @@ export const styledInputBase: SxProps<Theme> = theme => ({
 export const isDoneText: CSSProperties = {
   color: '#9c959e',
   textDecoration: 'line-through',
+}
+
+export const isDone: CSSProperties = {
+  opacity: 0.5,
 }

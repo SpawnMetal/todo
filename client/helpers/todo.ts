@@ -1,5 +1,5 @@
 import {AppDispatch, setTimerId, TodoInterface} from '@stores'
-import {DEBOUNCE_UPDATE_TODO} from 'env'
+import {debounceUpdateTodo} from '@config'
 
 // Получает задачи из sessionStorage
 export async function getsessionStorage() {
@@ -19,5 +19,5 @@ export async function setSessionStorage(todo: TodoInterface) {
 // Обновляет задачи в sessionStorage
 export async function updateSessionStorage(todo: TodoInterface, timerId: NodeJS.Timeout, dispatch: AppDispatch) {
   clearTimeout(timerId)
-  dispatch(setTimerId(setTimeout(() => setSessionStorage(todo), +DEBOUNCE_UPDATE_TODO)))
+  dispatch(setTimerId(setTimeout(() => setSessionStorage(todo), debounceUpdateTodo)))
 }

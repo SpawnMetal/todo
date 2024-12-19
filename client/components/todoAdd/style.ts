@@ -17,13 +17,14 @@ export const inputStyles: SxProps = {
 }
 
 export const inputIconWrapper: SxProps = {
-  pl: 2,
+  pl: 1,
+  ml: 0.5,
   height: '100%',
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  opacity: 0.2,
+  opacity: 0.5,
   zIndex: 1,
   '&:hover': {cursor: 'pointer'},
 }
