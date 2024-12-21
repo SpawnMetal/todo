@@ -57,8 +57,6 @@ class Todo {
 
   // Помечает задачу как выполненную
   setTodoDone(key: string, isDone: boolean) {
-    if (!this.todo[key]) return
-
     this.todo[key] = {...this.todo[key], isDone}
   }
 

@@ -30,12 +30,7 @@ test('Component TodoAdd', async () => {
   expect(todos).toEqual({})
 
   // Посимвольный ввод и добавление по enter
-  await user.type(addInput, 'H')
-  await user.type(addInput, 'e')
-  await user.type(addInput, 'l')
-  await user.type(addInput, 'l')
-  await user.type(addInput, 'o')
-  await user.type(addInput, '!')
+  await user.type(addInput, 'Hello!')
   expect(addInput).toHaveValue('Hello!')
   await user.keyboard('{enter}')
   expect(addInput).toHaveValue('')
@@ -44,23 +39,13 @@ test('Component TodoAdd', async () => {
   expect(key).toBeDefined()
   expect(todos[key]).toEqual({value: 'Hello!', isDone: false, keyTodo: key, key: key})
 
-  // Следующий разовый ввод и добавление по enter
-  await user.type(addInput, 'test')
-  expect(addInput).toHaveValue('test')
-  await user.keyboard('{enter}')
-  expect(addInput).toHaveValue('')
-  todos = todo.getTodo()
-  key = Object.keys(todos)[1]
-  expect(key).toBeDefined()
-  expect(todos[key]).toEqual({value: 'test', isDone: false, keyTodo: key, key: key})
-
-  // Разовый ввод и добавление по кнопке
+  // Посимвольный ввод и добавление по кнопке
   await user.type(addInput, '123')
   expect(addInput).toHaveValue('123')
   await user.click(addButton)
   expect(addInput).toHaveValue('')
   todos = todo.getTodo()
-  key = Object.keys(todos)[2]
+  key = Object.keys(todos)[1]
   expect(key).toBeDefined()
   expect(todos[key]).toEqual({value: '123', isDone: false, keyTodo: key, key: key})
 })

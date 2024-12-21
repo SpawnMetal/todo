@@ -65,9 +65,6 @@ export const todoSlice = createSlice({
     // Помечает задачу как выполненную
     setTodoDone(state: TodoState, action: PayloadAction<{key: string; isDone: boolean}>) {
       const {key, isDone} = action.payload
-
-      if (!state.todo[key]) return
-
       state.todo[key].isDone = isDone
     },
 
