@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './main.css'
 import {Mode} from '@components'
@@ -6,8 +6,6 @@ import {Mode} from '@components'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Lazy Render Loading</div>}>
-      <Mode />
-    </Suspense>
+    <Mode />
   </React.StrictMode>,
 )
