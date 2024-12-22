@@ -32,6 +32,7 @@ export const inputIconWrapper: SxProps = {
 export const styledInputBase: SxProps<Theme> = theme => ({
   color: 'inherit',
   width: '100%',
+  fontStyle: 'italic',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
