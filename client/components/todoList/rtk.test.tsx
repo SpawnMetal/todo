@@ -3,24 +3,30 @@ import {render, screen, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import config from '@config'
-config.mode = 'mobx' // Необходимо выставить мод перед @components
+config.mode = 'rtk' // Необходимо выставить мод перед @components
 import {TodoList} from '@components'
-import {todo} from '@stores'
+import {addTodo, getTodo, store} from '@stores'
+import {Provider} from 'react-redux'
 
 test('Component TodoList', async () => {
   let todos
   let key
+  config.mode = 'rtk'
   const user = userEvent.setup()
 
-  todos = todo.getTodo()
+  todos = getTodo(store.getState())
   expect(todos).toBeDefined()
-  todo.addTodo('test')
-  todos = todo.getTodo()
+  store.dispatch(addTodo('test'))
+  todos = getTodo(store.getState())
   key = Object.keys(todos)[0]
   expect(key).toBeDefined()
   expect(todos[key]).toEqual({value: 'test', isDone: false, keyTodo: key, key: key})
 
-  render(<TodoList {...todos[key]} />)
+  render(
+    <Provider store={store}>
+      <TodoList {...todos[key]} />
+    </Provider>,
+  )
 
   await waitFor(async () => {
     const todoInput = screen.getByRole('textbox') as HTMLInputElement
@@ -41,7 +47,7 @@ test('Component TodoList', async () => {
     const iconIsDone = screen.getByTestId('CheckCircleOutlineIcon')
     expect(iconIsDone).toBeInTheDocument()
 
-    todos = todo.getTodo()
+    todos = getTodo(store.getState())
     expect(todos[key]).toEqual({value: 'test123', isDone: true, keyTodo: key, key: key})
   })
 })

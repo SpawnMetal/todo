@@ -3,13 +3,19 @@ import {render, screen, waitFor} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import config from '@config'
-config.mode = 'mobx' // Необходимо выставить мод перед @components
+config.mode = 'rtk' // Необходимо выставить мод перед @components
 import {Todos} from '@components'
+import {Provider} from 'react-redux'
+import {store} from '@stores'
 
 test('Component Todos', async () => {
   const user = userEvent.setup()
 
-  render(<Todos />)
+  render(
+    <Provider store={store}>
+      <Todos />
+    </Provider>,
+  )
 
   // Добавляем задачи и проверяем текст с количеством выведенных задач в работе
   await waitFor(() => expect(screen.getByText(/0 items? left/i)).toBeInTheDocument())
