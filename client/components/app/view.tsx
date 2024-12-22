@@ -10,8 +10,8 @@ export const AppView = ({isRequestStatusError, isRequestStatusSuccess, isRequest
     <ErrorBoundary>
       <link rel="icon" href="/favicon.ico" />
       {isRequestStatusSuccess && <Home />}
-      {/* В mode = mobx, изменение open = false в Backdrop не реагирует, как-то связано с lazy импортом */}
-      {isRequestStatusLoading && <Backdrop open={isRequestStatusLoading} />}
+      {/* Отсутствие ключа вызывает вечную загрузку в MobX не строгом режиме */}
+      <Backdrop open={isRequestStatusLoading} key={Date.now()} />
     </ErrorBoundary>
   )
 }

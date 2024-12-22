@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 import {observer} from 'mobx-react-lite'
 import {todo} from '@stores'
 import {TodoAddView} from './view'
 
 export const TodoAdd = observer(() => {
   const [value, setValue] = React.useState('')
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const handleOnChangeAddTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -23,7 +28,8 @@ export const TodoAdd = observer(() => {
     todo.setItemsLeft()
     todo.updateSessionStorage()
     setValue('')
+    inputRef.current.focus()
   }
 
-  return <TodoAddView handleOnChangeAddTodo={handleOnChangeAddTodo} handleOnKeyUpAddTodo={handleOnKeyUpAddTodo} handleOnClickAddTodo={handleOnClickAddTodo} value={value} />
+  return <TodoAddView handleOnChangeAddTodo={handleOnChangeAddTodo} handleOnKeyUpAddTodo={handleOnKeyUpAddTodo} handleOnClickAddTodo={handleOnClickAddTodo} value={value} inputRef={inputRef} />
 })

@@ -3,4 +3,5 @@ export interface PropsView {
   handleOnKeyUpAddTodo: (event: React.KeyboardEvent<HTMLInputElement>) => void
   handleOnClickAddTodo: () => void
   value: string
+  inputRef: React.RefObject<any>
 }

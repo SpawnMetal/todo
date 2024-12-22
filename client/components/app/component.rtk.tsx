@@ -15,9 +15,9 @@ import {getsessionStorage} from '@helpers'
 
 export const App = () => {
   const dispatch = useAppDispatch()
-  const isRequestStatusError = useAppSelector(selectIsRequestStatusLoading)
+  const isRequestStatusError = useAppSelector(selectIsRequestStatusError)
   const isRequestStatusSuccess = useAppSelector(selectIsRequestStatusSuccess)
-  const isRequestStatusLoading = useAppSelector(selectIsRequestStatusError)
+  const isRequestStatusLoading = useAppSelector(selectIsRequestStatusLoading)
 
   useEffect(() => {
     dispatch(setRequestStatusLoading())
