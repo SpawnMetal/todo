@@ -19,7 +19,10 @@ Desctop MVP demo todos
 - `Typescript` - язык, на котором разработано приложение
 - `ReactJS` - библиотека на которой разработан интерфейс
 - `MobX` - стейт менеджер
+- `Redux Toolkit` - стейт менеджер
 - `MaterialUI` - инструмент для построения интерфейса в стиле Material Design
+- `React Testing Library` - библиотека для тестирования компонентов React
+- `Jest` - библиотека для тестирования
 - `esbuild` - быстрый сборщик
 
 ## config.json
