@@ -22,6 +22,10 @@ export const InfiniteScroll = ({data, renderItem}) => {
       setEndIndex(data.length)
       setPage(Math.ceil(endIndex / stepCount))
     }
+
+    return () => {
+      dataRef.current = true
+    }
   }, [data])
 
   useEffect(() => {
