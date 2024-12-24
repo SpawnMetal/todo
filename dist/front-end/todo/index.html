@@ -1,0 +1,27 @@
+
+      <!doctype html>
+      <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport"
+                    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>ToDo</title>
+              <link href="bundle.NZROXCDA.css" rel="stylesheet">
+          </head>
+          <body style="margin: 0">
+              <div id="root"></div>
+              <script src="bundle.JOZUJPJ4.js"></script>
+              <script>
+              const evtSource = new EventSource('http://localhost:3000/hot_reload')
+             evtSource.onopen = function () { console.log('hot reload gate active') }
+             evtSource.onerror = function () { console.log('error hot reload gate') }
+             evtSource.onmessage = function () { 
+                  console.log('message')
+                  window.location.reload();
+              }
+             
+             </script>
+          </body>
+      </html>
+                    
