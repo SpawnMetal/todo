@@ -12,4 +12,7 @@ export const panelMain: SxProps = {
   pl: 2.5,
   pr: 2.5,
   boxShadow: '0 0 0 1px rgba(0, 0, 0, 0.1)',
+  '@media (max-width: 1000px)': {
+    justifyContent: 'center',
+  },
 }

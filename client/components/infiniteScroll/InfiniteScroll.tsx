@@ -22,11 +22,14 @@ export const InfiniteScroll = ({data, renderItem}) => {
       setEndIndex(data.length)
       setPage(Math.ceil(endIndex / stepCount))
     }
+  }, [data])
 
+  // В StrictMode необходима очистка при первом рендере
+  useEffect(() => {
     return () => {
       dataRef.current = true
     }
-  }, [data])
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
