@@ -2,6 +2,8 @@
 
 Desctop MVP demo todos
 
+Живой пример https://spawnmetal.github.io/todos/
+
 ## Оглавление
 
 - [Команды запуска скриптов](#Команды-запуска-скриптов)
