@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo, memo, useRef} from 'react'
+import React, {useState, useEffect, useMemo, useRef} from 'react'
 import {Progress} from '@components'
 import {Box} from '@mui/material'
 import * as style from './style'

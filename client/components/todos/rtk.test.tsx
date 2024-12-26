@@ -18,24 +18,24 @@ test('Component Todos', async () => {
   )
 
   // Добавляем задачи и проверяем текст с количеством выведенных задач в работе
-  await waitFor(() => expect(screen.getByText(/0 items? left/i)).toBeInTheDocument())
+  expect(await screen.findByText(/0 items? left/i)).toBeInTheDocument()
   let inputs = screen.getAllByRole('textbox')
   await user.type(inputs[0], 'test1')
   await user.keyboard('{enter}')
-  await waitFor(() => expect(screen.getByText(/1 item? left/i)).toBeInTheDocument())
+  expect(await screen.findByText(/1 item? left/i)).toBeInTheDocument()
   await user.type(inputs[0], 'test2')
   await user.keyboard('{enter}')
-  await waitFor(() => expect(screen.getByText(/2 items? left/i)).toBeInTheDocument())
+  expect(await screen.findByText(/2 items? left/i)).toBeInTheDocument()
   await user.type(inputs[0], 'test3')
   await user.keyboard('{enter}')
-  await waitFor(() => expect(screen.getByText(/3 items? left/i)).toBeInTheDocument())
+  expect(await screen.findByText(/3 items? left/i)).toBeInTheDocument()
   inputs = screen.getAllByRole('textbox')
   expect(inputs.length).toEqual(4) // Проверяем количество элементов
 
   // Количество выполненных задач
   const buttons = screen.getAllByRole('button')
   await user.click(buttons[1]) // Предполагается, что это кнопка завершения задачи
-  await waitFor(() => expect(screen.getByText(/2 items? left/i)).toBeInTheDocument())
+  expect(await screen.findByText(/2 items? left/i)).toBeInTheDocument()
   const completedButton = screen.getByText('Completed')
   await user.click(completedButton)
   inputs = screen.getAllByRole('textbox')

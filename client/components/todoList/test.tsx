@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, screen, waitFor} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import config from '@config'
@@ -22,26 +22,24 @@ test('Component TodoList', async () => {
 
   render(<TodoList {...todos[key]} />)
 
-  await waitFor(async () => {
-    const todoInput = screen.getByRole('textbox') as HTMLInputElement
-    const isDoneButton = screen.getByRole('button')
-    const iconNotIsDone = screen.getByTestId('CircleOutlinedIcon')
+  const todoInput = (await screen.findByRole('textbox')) as HTMLInputElement
+  const isDoneButton = await screen.findByRole('button')
+  const iconNotIsDone = screen.getByTestId('CircleOutlinedIcon')
 
-    expect(todoInput).toBeInTheDocument()
-    expect(isDoneButton).toBeInTheDocument()
-    expect(iconNotIsDone).toBeInTheDocument()
+  expect(todoInput).toBeInTheDocument()
+  expect(isDoneButton).toBeInTheDocument()
+  expect(iconNotIsDone).toBeInTheDocument()
 
-    expect(todoInput).toHaveValue('test')
+  expect(todoInput).toHaveValue('test')
 
-    // Посимвольное редактирование текста задачи
-    await user.type(todoInput, '123')
-    expect(todoInput).toHaveValue('test123')
+  // Посимвольное редактирование текста задачи
+  await user.type(todoInput, '123')
+  expect(todoInput).toHaveValue('test123')
 
-    await user.click(isDoneButton)
-    const iconIsDone = screen.getByTestId('CheckCircleOutlineIcon')
-    expect(iconIsDone).toBeInTheDocument()
+  await user.click(isDoneButton)
+  const iconIsDone = screen.getByTestId('CheckCircleOutlineIcon')
+  expect(iconIsDone).toBeInTheDocument()
 
-    todos = todo.getTodo()
-    expect(todos[key]).toEqual({value: 'test123', isDone: true, keyTodo: key, key: key})
-  })
+  todos = todo.getTodo()
+  expect(todos[key]).toEqual({value: 'test123', isDone: true, keyTodo: key, key: key})
 })

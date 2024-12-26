@@ -12,8 +12,8 @@ test('Component TodoAdd', async () => {
 
   render(<TodoAdd />)
 
-  const addInput = screen.getByRole('textbox') as HTMLInputElement
-  const addButton = screen.getByRole('button')
+  const addInput = (await screen.findByRole('textbox')) as HTMLInputElement
+  const addButton = await screen.findByRole('button')
 
   expect(addInput).toBeInTheDocument()
   expect(addButton).toBeInTheDocument()
