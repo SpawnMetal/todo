@@ -3,7 +3,7 @@ export * from './todo/store'
 
 // Redux Toolkit
 export * from './todo/slice'
-export * from './rtk.store'
+export * from './store.rtk'
 
 // Zustand
 export * from './todo/store.zustand'
