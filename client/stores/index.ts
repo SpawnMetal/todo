@@ -5,5 +5,8 @@ export * from './todo/store'
 export * from './todo/slice'
 export * from './rtk.store'
 
+// Zustand
+export * from './todo/store.zustand'
+
 // Interfaces
 export * from './todo/interface'

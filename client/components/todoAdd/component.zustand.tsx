@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {observer} from 'mobx-react-lite'
-import {todo} from '@stores'
+import {useTodoStore} from '@stores'
 import {TodoAddView} from './view'
 
-export const TodoAdd = observer(() => {
+export const TodoAdd = () => {
+  const {addTodo: setAddTodo, setItemsLeft, updateSessionStorage} = useTodoStore()
   const [value, setValue] = useState('')
   const inputRef = useRef(null)
 
@@ -24,12 +24,12 @@ export const TodoAdd = observer(() => {
   }
 
   const addTodo = () => {
-    todo.addTodo(value)
-    todo.setItemsLeft()
-    todo.updateSessionStorage()
+    setAddTodo(value)
+    setItemsLeft()
+    updateSessionStorage()
     setValue('')
     inputRef.current.focus()
   }
 
   return <TodoAddView handleOnChangeAddTodo={handleOnChangeAddTodo} handleOnKeyUpAddTodo={handleOnKeyUpAddTodo} handleOnClickAddTodo={handleOnClickAddTodo} value={value} inputRef={inputRef} />
-})
+}

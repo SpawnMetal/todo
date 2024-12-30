@@ -6,7 +6,7 @@ import {store} from '@stores'
 import {Typography} from '@mui/material'
 
 export const Mode = () => {
-  if (mode === 'mobx') return <App />
+  if (mode === 'mobx' || mode === 'zustand') return <App />
   else if (mode === 'rtk')
     return (
       <Provider store={store}>

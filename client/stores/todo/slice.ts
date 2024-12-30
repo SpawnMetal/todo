@@ -21,7 +21,7 @@ const initialState: TodoState = {
   todo: {}, // Данные по задачам
   itemsLeft: 0, // Количество задач, которые ещё не выполнены
   toggleMode: 'all', // Режим отображения задач
-  timerId: null, // Идентификатор debounce таймера для для сохранения данных
+  timerId: null, // Идентификатор debounce таймера для сохранения данных
 }
 
 export const todoSlice = createSlice({

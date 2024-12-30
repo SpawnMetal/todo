@@ -11,7 +11,7 @@ class Todo {
   private todo: TodoInterface = {} // Данные по задачам
   private itemsLeft = 0 // Количество задач, которые ещё не выполнены
   private toggleMode: ToggleModes = 'all' // Режим отображения задач
-  private timerId: NodeJS.Timeout = null // Идентификатор debounce таймера для для сохранения данных
+  private timerId: NodeJS.Timeout = null // Идентификатор debounce таймера для сохранения данных
 
   constructor() {
     makeAutoObservable(this)

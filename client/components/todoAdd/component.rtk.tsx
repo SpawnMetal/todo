@@ -1,10 +1,10 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {TodoAddView} from './view'
 import {addTodo as setAddTodo, setItemsLeft, useAppDispatch} from '@stores'
 
 export const TodoAdd = () => {
   const dispatch = useAppDispatch()
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = useState('')
   const inputRef = useRef(null)
 
   useEffect(() => {

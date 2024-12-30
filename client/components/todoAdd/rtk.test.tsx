@@ -2,7 +2,9 @@ import React from 'react'
 import {render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
-import {TodoAdd} from './component.rtk'
+import config from '@config'
+config.mode = 'rtk' // Необходимо выставить мод перед @components
+import {TodoAdd} from '@components'
 import {getTodo, store} from '@stores'
 import {Provider} from 'react-redux'
 
