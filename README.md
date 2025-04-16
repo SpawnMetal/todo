@@ -1,6 +1,6 @@
 # Список задач todos
 
-Desctop MVP demo todos
+Desktop MVP demo todos
 
 Живой пример https://spawnmetal.github.io/todos/
 
